@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(const App());
@@ -13,7 +14,7 @@ class App extends StatelessWidget {
       title: 'flutter_practice_widgets',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor:const  Color.fromARGB(255, 43, 251, 255),
+          seedColor: const Color.fromARGB(255, 43, 251, 255),
         ),
         useMaterial3: true,
       ),
@@ -35,19 +36,49 @@ class MyApp extends StatelessWidget {
         title: const Text(
           'app bar',
         ),
-        backgroundColor:const Color.fromARGB(255, 43, 251, 255),
+        backgroundColor: const Color.fromARGB(255, 43, 251, 255),
       ),
-      body: const Text(
-        'faisal',
+      body: Container(
+        child: _card(),
       ),
     );
   }
 
-  Widget adda() {
-    return  Container(
-      child: Row(
-        
+  Widget _card() {
+    return Container(
+      height: _deviseHeight * 0.5,
+      width: _deviseWidth * 0.8,
+      margin: EdgeInsets.symmetric(
+        vertical: _deviseHeight * 0.05,
+        horizontal: _deviseWidth * 0.1,
+      ),
+      decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.blue, // Border color
+            width: 3, // Border width
+          ),
+          borderRadius: BorderRadius.circular(10)),
+      child: Column(
+        children: [
+          Center(
+            child: Container(
+              margin: EdgeInsets.symmetric(
+                vertical: _deviseHeight * 0.02,
+              ),
+              height: _deviseHeight * 0.25,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    'assets/images/man/man1.png',
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const Text('sadas'),
+        ],
       ),
     );
   }
 }
+
