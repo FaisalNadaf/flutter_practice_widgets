@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -53,20 +54,21 @@ class MyApp extends StatelessWidget {
         horizontal: _deviseWidth * 0.1,
       ),
       decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.blue, // Border color
-            width: 3, // Border width
-          ),
-          borderRadius: BorderRadius.circular(10)),
+        border: Border.all(
+          color: Colors.blue, // Border color
+          width: 3, // Border width
+        ),
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: Column(
         children: [
           Center(
             child: Container(
               margin: EdgeInsets.symmetric(
-                vertical: _deviseHeight * 0.02,
+                vertical: _deviseHeight * 0.02  ,
               ),
               height: _deviseHeight * 0.25,
-              decoration: const BoxDecoration(
+              decoration: const BoxDecoration(  
                 image: DecorationImage(
                   image: AssetImage(
                     'assets/images/man/man1.png',
@@ -75,10 +77,34 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
-          const Text('sadas'),
+          const Row(
+            
+            children: [
+
+              Text(
+                
+                'Faisal ',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  
+                ),
+                
+              ),
+              Text(
+              
+                ' Nadaf',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  
+                ),
+              
+              ),
+            ],
+          )
         ],
       ),
     );
   }
 }
-
