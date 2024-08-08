@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -35,9 +37,7 @@ class MyApp extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: _deviseHeight * 0.1,
-        title: const Text(
-          'app bar',
-        ),
+        title: _header(),
         backgroundColor: const Color.fromARGB(255, 43, 251, 255),
       ),
       body: SingleChildScrollView(
@@ -64,6 +64,7 @@ class MyApp extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: _Addtask(),
     );
   }
 
@@ -107,7 +108,7 @@ class MyApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                fname,
+                fname + '  ',
                 style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w600,
@@ -167,6 +168,57 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _Addtask() {
+    return FloatingActionButton(
+      onPressed: () {},
+      backgroundColor: const Color.fromARGB(255, 255, 0, 0),
+      child: const Icon(
+        Icons.add,
+        size: 30,
+      ),
+    );
+  }
+
+  Widget _header() {
+    return const Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Icon(
+          size: 30,
+          Icons.menu,
+        ),
+        Text(
+          'HireOne',
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        SizedBox(
+          width: 150,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(
+                Icons.camera,
+                size: 30,
+              ),
+              Icon(
+                size: 30,
+                Icons.search,
+              ),
+              Icon(
+                size: 30,
+                Icons.more_vert,
+              ),
+            ],
+          ),
+        )
+      ],
     );
   }
 }
