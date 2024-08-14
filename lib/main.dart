@@ -1,7 +1,10 @@
+import 'dart:ffi';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_practice_widgets/widgets/drawer.dart';
 
 void main() {
   runApp(const App());
@@ -28,6 +31,7 @@ class App extends StatelessWidget {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
   late double _deviseHeight, _deviseWidth;
+  bool hideMenu = false;
 
   @override
   Widget build(BuildContext context) {
@@ -42,25 +46,24 @@ class MyApp extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            _card(
-              'Faisal',
-              'Nadaf',
-              'A paragraph is a series of sentences .',
-              'assets/images/man/man1.png',
-            ),
-            _card(
-              'Alex',
-              'Per',
-              'A paragraph is a series of sentences .',
-              'assets/images/man/man2.png',
-            ),
-            _card(
-              'Jhon',
-              'Jakobs',
-              'A paragraph is a series of sentences .',
-              'assets/images/man/man3.png',
-            ),
-            BottomNavigationBar(items: Icon())
+            // _card(
+            //   'Faisal',
+            //   'Nadaf',
+            //   'A paragraph is a series of sentences .',
+            //   'assets/images/man/man1.png',
+            // ),
+            // _card(
+            //   'Alex',
+            //   'Per',
+            //   'A paragraph is a series of sentences .',
+            //   'assets/images/man/man2.png',
+            // ),
+            // _card(
+            //   'Jhon',
+            //   'Jakobs',
+            //   'A paragraph is a series of sentences .',
+            //   'assets/images/man/man3.png',
+            // ),
           ],
         ),
       ),
@@ -82,6 +85,7 @@ class MyApp extends StatelessWidget {
         selectedItemColor: Colors.amber[800],
       ),
       floatingActionButton: _Addtask(),
+      drawer:myDrawer() ,
     );
   }
 
@@ -200,21 +204,24 @@ class MyApp extends StatelessWidget {
   }
 
   Widget _header() {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Icon(
-          size: 30,
-          Icons.menu,
+        MaterialButton(
+          onPressed: () {},
+          child: const Icon(
+            size: 30,
+            Icons.menu,
+          ),
         ),
-        Text(
+        const Text(
           'HireOne',
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.w700,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 150,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -236,6 +243,26 @@ class MyApp extends StatelessWidget {
           ),
         )
       ],
+    );
+  }
+
+  Widget _menu() {
+    return const MenuBar(children: [
+      Text(
+        'data',
+        style: TextStyle(
+          color: Colors.red,
+          fontSize: 40,
+        ),
+      ),
+    ]);
+  }
+
+  Widget sideMenu() {
+    return Container(
+      height: _deviseHeight * 4,
+      width: _deviseWidth * 2,
+      color: Colors.red,
     );
   }
 }
