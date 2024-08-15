@@ -1,10 +1,4 @@
-import 'dart:ffi';
-import 'dart:ui';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_practice_widgets/widgets/drawer.dart';
 
 void main() {
   runApp(const App());
@@ -30,40 +24,84 @@ class App extends StatelessWidget {
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
-  late double _deviseHeight, _deviseWidth;
+  late double _deviceHeight, _deviceWidth;
   bool hideMenu = false;
 
   @override
   Widget build(BuildContext context) {
-    _deviseHeight = MediaQuery.of(context).size.height;
-    _deviseWidth = MediaQuery.of(context).size.width;
+    _deviceHeight = MediaQuery.of(context).size.height;
+    _deviceWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: _deviseHeight * 0.1,
+        toolbarHeight: _deviceHeight * 0.1,
         title: _header(),
         backgroundColor: const Color.fromARGB(255, 43, 251, 255),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 43, 251, 255),
+              ),
+              child: Text(
+                'Drawer Header',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            ListTile(
+              title: const Text('Home'),
+              onTap: () {
+                Colors.red;
+              },
+            ),
+            ListTile(
+              title: const Text('Business'),
+              onTap: () {
+                Colors.red;
+              },
+            ),
+            ListTile(
+              title: const Text('School'),
+              onTap: () {
+                Colors.red;
+              },
+            ),
+            ListTile(
+              title: const Text('College'),
+              onTap: () {
+                Colors.red;
+              },
+            ),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // _card(
-            //   'Faisal',
-            //   'Nadaf',
-            //   'A paragraph is a series of sentences .',
-            //   'assets/images/man/man1.png',
-            // ),
-            // _card(
-            //   'Alex',
-            //   'Per',
-            //   'A paragraph is a series of sentences .',
-            //   'assets/images/man/man2.png',
-            // ),
-            // _card(
-            //   'Jhon',
-            //   'Jakobs',
-            //   'A paragraph is a series of sentences .',
-            //   'assets/images/man/man3.png',
-            // ),
+            _card(
+              'Faisal',
+              'Nadaf',
+              'A paragraph is a series of sentences .',
+              'assets/images/man/man1.png',
+            ),
+            _card(
+              'Alex',
+              'Per',
+              'A paragraph is a series of sentences .',
+              'assets/images/man/man2.png',
+            ),
+            _card(
+              'Jhon',
+              'Jakobs',
+              'A paragraph is a series of sentences .',
+              'assets/images/man/man3.png',
+            ),
           ],
         ),
       ),
@@ -84,26 +122,25 @@ class MyApp extends StatelessWidget {
         ],
         selectedItemColor: Colors.amber[800],
       ),
-      floatingActionButton: _Addtask(),
-      drawer:myDrawer() ,
+      floatingActionButton: _addTaskButton(),
     );
   }
 
   Widget _card(String fname, String lname, String about, String imgUrl) {
     return Container(
-      height: _deviseHeight * 0.5,
-      width: _deviseWidth * 0.8,
+      height: _deviceHeight * 0.5,
+      width: _deviceWidth * 0.8,
       margin: EdgeInsets.symmetric(
-        vertical: _deviseHeight * 0.05,
-        horizontal: _deviseWidth * 0.1,
+        vertical: _deviceHeight * 0.05,
+        horizontal: _deviceWidth * 0.1,
       ),
       padding: EdgeInsets.symmetric(
-        vertical: _deviseHeight * 0,
-        horizontal: _deviseWidth * 0.1,
+        vertical: _deviceHeight * 0,
+        horizontal: _deviceWidth * 0.1,
       ),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Color.fromARGB(255, 31, 77, 114), // Border color
+          color: const Color.fromARGB(255, 31, 77, 114), // Border color
           width: 3, // Border width
         ),
         borderRadius: BorderRadius.circular(10),
@@ -113,9 +150,9 @@ class MyApp extends StatelessWidget {
           Center(
             child: Container(
               margin: EdgeInsets.symmetric(
-                vertical: _deviseHeight * 0.02,
+                vertical: _deviceHeight * 0.02,
               ),
-              height: _deviseHeight * 0.25,
+              height: _deviceHeight * 0.25,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
@@ -155,8 +192,8 @@ class MyApp extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomButton('Message', 0.26),
-              CustomButton('Connect', 0.26),
+              _customButton('Message'),
+              _customButton('Connect'),
             ],
           )
         ],
@@ -164,15 +201,14 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  // ignore: non_constant_identifier_names
-  Widget CustomButton(String text, double width) {
+  Widget _customButton(String text) {
     return Container(
-      width: _deviseWidth * 0.26,
+      width: _deviceWidth * 0.26,
       margin: EdgeInsets.symmetric(
-        vertical: _deviseHeight * 0.02,
+        vertical: _deviceHeight * 0.02,
       ),
       padding: EdgeInsets.symmetric(
-        vertical: _deviseHeight * 0.0003,
+        vertical: _deviceHeight * 0.0003,
       ),
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 97, 97, 97),
@@ -192,7 +228,7 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  Widget _Addtask() {
+  Widget _addTaskButton() {
     return FloatingActionButton(
       onPressed: () {},
       backgroundColor: const Color.fromARGB(255, 255, 0, 0),
@@ -204,16 +240,9 @@ class MyApp extends StatelessWidget {
   }
 
   Widget _header() {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        MaterialButton(
-          onPressed: () {},
-          child: const Icon(
-            size: 30,
-            Icons.menu,
-          ),
-        ),
         const Text(
           'HireOne',
           style: TextStyle(
@@ -226,43 +255,27 @@ class MyApp extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: const [
               Icon(
                 Icons.camera,
                 size: 30,
               ),
               Icon(
-                size: 30,
                 Icons.search,
+                size: 30,
               ),
               Icon(
-                size: 30,
                 Icons.more_vert,
+                size: 30,
               ),
             ],
           ),
-        )
+        ),
       ],
     );
   }
 
-  Widget _menu() {
-    return const MenuBar(children: [
-      Text(
-        'data',
-        style: TextStyle(
-          color: Colors.red,
-          fontSize: 40,
-        ),
-      ),
-    ]);
-  }
-
-  Widget sideMenu() {
-    return Container(
-      height: _deviseHeight * 4,
-      width: _deviseWidth * 2,
-      color: Colors.red,
-    );
+  Widget popUpAdd() {
+    return AlertDialog();
   }
 }
