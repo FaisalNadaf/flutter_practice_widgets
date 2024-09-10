@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(const App());
@@ -38,55 +39,19 @@ class MyApp extends StatelessWidget {
         title: _header(),
         backgroundColor: const Color.fromARGB(255, 43, 251, 255),
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 43, 251, 255),
-              ),
-              child: Text(
-                'Drawer Header',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-            ListTile(
-              title: const Text('Home'),
-              onTap: () {
-                Colors.red;
-              },
-            ),
-            ListTile(
-              title: const Text('Business'),
-              onTap: () {
-                Colors.red;
-              },
-            ),
-            ListTile(
-              title: const Text('School'),
-              onTap: () {
-                Colors.red;
-              },
-            ),
-            ListTile(
-              title: const Text('College'),
-              onTap: () {
-                Colors.red;
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: _drawer(),
       body: SingleChildScrollView(
         child: Column(
           children: [
             _card(
               'Faisal',
               'Nadaf',
+              'A paragraph is a series of sentences .',
+              'assets/images/man/man3.png',
+            ),
+            _card(
+              'Jack',
+              'CN',
               'A paragraph is a series of sentences .',
               'assets/images/man/man1.png',
             ),
@@ -126,6 +91,56 @@ class MyApp extends StatelessWidget {
     );
   }
 
+  Widget _drawer() {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          const DrawerHeader(
+            decoration: BoxDecoration(
+              color: Color.fromARGB(255, 43, 251, 255),
+            ),
+            child: Text(
+              'Drawer Header',
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          ListTile(
+            title: const Text('Home'),
+            onTap: () {
+              Colors.red;
+            },
+          ),
+          ListTile(
+            title: const Text('Business'),
+            onTap: () {
+              Colors.red;
+            },
+          ),
+          ListTile(
+            title: const Text('School'),
+            onTap: () {
+              Colors.red;
+            },
+          ),
+          ListTile(
+            title: const Text('College'),
+            onTap: () {
+              Colors.red;
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _searchBar() {
+    return const SearchBar();
+  }
+
   Widget _card(String fname, String lname, String about, String imgUrl) {
     return Container(
       height: _deviceHeight * 0.5,
@@ -136,7 +151,7 @@ class MyApp extends StatelessWidget {
       ),
       padding: EdgeInsets.symmetric(
         vertical: _deviceHeight * 0,
-        horizontal: _deviceWidth * 0.1,
+        horizontal: _deviceWidth * 0.05,
       ),
       decoration: BoxDecoration(
         border: Border.all(
@@ -203,12 +218,13 @@ class MyApp extends StatelessWidget {
 
   Widget _customButton(String text) {
     return Container(
-      width: _deviceWidth * 0.26,
+      width: _deviceWidth * 0.3,
       margin: EdgeInsets.symmetric(
-        vertical: _deviceHeight * 0.02,
+        vertical: _deviceHeight * 0.01,
+        horizontal: _deviceWidth * 0.01,
       ),
       padding: EdgeInsets.symmetric(
-        vertical: _deviceHeight * 0.0003,
+        vertical: _deviceHeight * 0,
       ),
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 97, 97, 97),
@@ -230,7 +246,9 @@ class MyApp extends StatelessWidget {
 
   Widget _addTaskButton() {
     return FloatingActionButton(
-      onPressed: () {},
+      onPressed: () {
+        _popUpAdd();
+      },
       backgroundColor: const Color.fromARGB(255, 255, 0, 0),
       child: const Icon(
         Icons.add,
@@ -243,14 +261,14 @@ class MyApp extends StatelessWidget {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text(
+        Text(
           'HireOne',
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.w700,
           ),
         ),
-        const SizedBox(
+        SizedBox(
           width: 150,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -275,7 +293,14 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  Widget popUpAdd() {
-    return AlertDialog();
+  Widget _popUpAdd() {
+    return const AlertDialog(
+      title: Text(
+        "Faisal",
+      ),
+      content: Text(
+        "data",
+      ),
+    );
   }
 }
